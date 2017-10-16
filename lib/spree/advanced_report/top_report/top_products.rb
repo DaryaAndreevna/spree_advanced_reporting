@@ -24,7 +24,7 @@ class Spree::AdvancedReport::TopReport::TopProducts < Spree::AdvancedReport::Top
       end
     end
 
-    self.ruportdata = Table(%w[name Units Revenue])
+    self.ruportdata = Ruport.Table(%w[name Units Revenue])
     data.inject({}) { |h, (k, v) | h[k] = v[:revenue]; h }.sort { |a, b| a[1] <=> b [1] }.reverse[0..limit].each do |k, v|
       ruportdata << { "name" => data[k][:name], "Units" => data[k][:units], "Revenue" => data[k][:revenue] } 
     end

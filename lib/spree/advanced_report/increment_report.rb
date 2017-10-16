@@ -6,7 +6,7 @@ class Spree::AdvancedReport::IncrementReport < Spree::AdvancedReport
     super(params)
   
     self.increments = INCREMENTS 
-    self.ruportdata = INCREMENTS.inject({}) { |h, inc| h[inc] = Table(%w[key display value]); h }
+    self.ruportdata = INCREMENTS.inject({}) { |h, inc| h[inc] = Ruport.Table(%w[key display value]); h }
     self.data = INCREMENTS.inject({}) { |h, inc| h[inc] = {}; h }
 
     self.dates = {
@@ -35,7 +35,7 @@ class Spree::AdvancedReport::IncrementReport < Spree::AdvancedReport
   end
 
   def generate_ruport_data
-    self.all_data = Table(%w[increment key display value]) 
+    self.all_data = Ruport.Table(%w[increment key display value]) 
     INCREMENTS.each do |inc|
       data[inc].each { |k,v| ruportdata[inc] << { "key" => k, "display" => v[:display], "value" => v[:value] } }
       ruportdata[inc].data.each do |p|

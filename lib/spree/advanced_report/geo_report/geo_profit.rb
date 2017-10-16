@@ -34,7 +34,7 @@ class Spree::AdvancedReport::GeoReport::GeoProfit < Spree::AdvancedReport::GeoRe
     end
 
     [:state, :country].each do |type|
-      ruportdata[type] = Table(%w[location Profit])
+      ruportdata[type] = Ruport.Table(%w[location Profit])
       data[type].each { |k, v| ruportdata[type] << { "location" => v[:name], "Profit" => v[:profit] } }
       ruportdata[type].sort_rows_by!(["Profit"], :order => :descending)
       ruportdata[type].rename_column("location", type.to_s.capitalize)

@@ -34,7 +34,7 @@ class Spree::AdvancedReport::GeoReport::GeoUnits < Spree::AdvancedReport::GeoRep
     end
 
     [:state, :country].each do |type|
-      ruportdata[type] = Table(%w[location Units])
+      ruportdata[type] = Ruport.Table(%w[location Units])
       data[type].each { |k, v| ruportdata[type] << { "location" => v[:name], "Units" => v[:units] } }
       ruportdata[type].sort_rows_by!(["Units"], :order => :descending)
       ruportdata[type].rename_column("location", type.to_s.capitalize)
