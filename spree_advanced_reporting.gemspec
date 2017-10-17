@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   #s.description = 'Advanced Add (optional) gem description here'
   # s.rubyforge_project = 'actionmailer'
 
-  s.files        = Dir['CHANGELOG', 'README.md', 'LICENSE', 'lib/**/*', 'app/**/*']
+  s.files        = Dir['CHANGELOG', 'README.md', 'LICENSE', 'lib/**/*', 'app/**/*', 'vendor/**/*']
   s.require_path = 'lib'
   s.requirements << 'none'
 

@@ -27,17 +27,10 @@ $(function() {
 	});
 	update_report_dropdowns($('select#report').val());
 	$('select#report').change(function() { update_report_dropdowns($(this).val()); });
-
-	if(completed_at_gt != '') {
-		$('input#search_completed_at_gt').val(completed_at_gt);
-	}
-	if(completed_at_lt != '') {
-		$('input#search_completed_at_lt').val(completed_at_lt);
-	}
 })
 	
 var update_report_dropdowns = function(value) {	
-	if(value.match(/\/count$/) || value.match(/\/top_products$/)) {
+	if(value && (value.match(/\/count$/) || value.match(/\/top_products$/))) {
 		$('select#advanced_reporting_product_id,select#advanced_reporting_taxon_id').val('');
 		$('div#taxon_products').hide();
 	} else {
