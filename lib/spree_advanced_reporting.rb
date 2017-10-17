@@ -5,7 +5,9 @@ require "ruport"
 module Spree
   module AdvancedReporting
     class Engine < Rails::Engine
-      config.autoload_paths += %W(#{config.root}/lib)
+
+      config.autoload_paths << "#{config.root}/lib"
+
       def self.activate
         
         Dir.glob(File.join(File.dirname(__FILE__), "../config/locales/*.yml")).each do |c|
