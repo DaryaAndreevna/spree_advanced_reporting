@@ -7,7 +7,7 @@ class Spree::AdvancedReport::TopReport::TopProducts < Spree::AdvancedReport::Top
     "Top selling products, calculated by revenue"
   end
 
-  def initialize(params, limit)
+  def initialize(params)
     super(params)
 
     orders.each do |order|
@@ -25,7 +25,7 @@ class Spree::AdvancedReport::TopReport::TopProducts < Spree::AdvancedReport::Top
     end
 
     self.ruportdata = Ruport.Table(%w[name Units Revenue])
-    data.inject({}) { |h, (k, v) | h[k] = v[:revenue]; h }.sort { |a, b| a[1] <=> b [1] }.reverse[0..limit].each do |k, v|
+    data.inject({}) { |h, (k, v) | h[k] = v[:revenue]; h }.sort { |a, b| a[1] <=> b [1] }.reverse_each do |k, v|
       ruportdata << { "name" => data[k][:name], "Units" => data[k][:units], "Revenue" => data[k][:revenue] } 
     end
     ruportdata.replace_column("Revenue") { |r| "$%0.2f" % r.Revenue }
